@@ -1,0 +1,35 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: gateway-service-entry
+  namespace: restaurant-demo
+spec:
+  hosts:
+    - "*"
+  gateways:
+    - restaurant-ingress-gateway
+  http:
+    - match:
+        - uri:
+            prefix: /api/menu
+      route:
+        - destination:
+            host: gateway-service
+            port:
+              number: 8080
+    - match:
+        - uri:
+            prefix: /api/orders
+      route:
+        - destination:
+            host: gateway-service
+            port:
+              number: 8080
+    - match:
+        - uri:
+            prefix: /api/payments
+      route:
+        - destination:
+            host: gateway-service
+            port:
+              number: 8080
