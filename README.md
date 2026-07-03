@@ -80,6 +80,11 @@ You should see these components running:
 - `kafka`
 - `phpmyadmin`
 
+Important:
+
+- MySQL should keep its data on a persistent volume
+- if MySQL is recreated without persistent storage, the service databases and `restaurant_app` user can disappear, which will make `menu-service`, `order-service`, and `payment-service` fail at startup with MySQL access errors
+
 ## Quick Backend Test
 
 ```bash
